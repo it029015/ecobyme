@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cut">
+<title>EcoByMe – Supporto</title>
+<meta name="description" content="Supporto e contatti per l'app EcoByMe.">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --bg: #f3f7f1;
+    --bg-2: #e3efe0;
+    --card: #ffffff;
+    --text: #17301f;
+    --muted: #5a6e60;
+    --accent: #2f8f4e;
+    --accent-2: #46b36a;
+    --accent-ink: #ffffff;
+    --border: rgba(23, 48, 31, .10);
+    --shadow: 0 10px 30px rgba(31, 77, 45, .10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1712;
+      --bg-2: #13241a;
+      --card: #172219;
+      --text: #e6f1e8;
+      --muted: #9db3a3;
+      --accent: #4cc275;
+      --accent-2: #2f8f4e;
+      --accent-ink: #08140c;
+      --border: rgba(230, 241, 232, .10);
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1712; --bg-2: #13241a; --card: #172219; --text: #e6f1e8; --muted: #9db3a3;
+    --accent: #4cc275; --accent-2: #2f8f4e; --accent-ink: #08140c;
+    --border: rgba(230, 241, 232, .10); --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 80% -10%, var(--bg-2), transparent 60%), var(--bg);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  /* Barra lingue */
+  .topbar { display: flex; justify-content: flex-end; padding-top: 16px; }
+  .lang {
+    position: relative; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 12px; box-shadow: var(--shadow);
+  }
+  .lang svg { width: 18px; height: 18px; color: var(--muted); flex: none; }
+  .lang select {
+    appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+    font: inherit; font-size: 15px; color: var(--text); padding-right: 14px; cursor: pointer;
+  }
+  .lang::after {
+    content: ""; position: absolute; right: 12px; top: 50%; width: 6px; height: 6px;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+    transform: translateY(-70%) rotate(45deg); pointer-events: none;
+  }
+
+  /* Hero */
+  .hero { text-align: center; padding: 40px 0 28px; }
+  .icon {
+    width: 112px; height: 112px; border-radius: 26px; box-shadow: var(--shadow);
+    display: block; margin: 0 auto 20px;
+  }
+  h1 { font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 0 0 10px; letter-spacing: -.02em; }
+  .tagline { font-size: clamp(17px, 3.2vw, 20px); color: var(--muted); margin: 0 auto; max-width: 560px; }
+
+  /* Card contatto */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 22px;
+    box-shadow: var(--shadow); padding: 28px 24px; margin: 8px 0 24px;
+  }
+  .contact { text-align: center; }
+  .contact h2 { margin: 0 0 8px; font-size: 24px; }
+  .contact p { margin: 0 auto 20px; color: var(--muted); max-width: 520px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    color: var(--accent-ink); text-decoration: none; font-weight: 600; font-size: 17px;
+    border: 0; border-radius: 14px; padding: 15px 26px; cursor: pointer;
+    box-shadow: 0 6px 18px rgba(47, 143, 78, .30); transition: transform .15s ease;
+    width: 100%; max-width: 360px;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(1px); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .email-row {
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
+    margin-top: 16px; font-size: 15px; color: var(--muted);
+  }
+  .email-row code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--text);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px;
+    word-break: break-all;
+  }
+  .copy {
+    font: inherit; font-size: 14px; color: var(--accent); background: transparent;
+    border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+  }
+  .response { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+  /* Sezioni */
+  h3 { font-size: 20px; margin: 0 0 14px; }
+  .tips { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .tips li { display: flex; gap: 12px; align-items: flex-start; }
+  .tips .dot {
+    flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--bg-2); color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  details { border-top: 1px solid var(--border); padding: 14px 0; }
+  details:first-of-type { border-top: 0; padding-top: 0; }
+  summary {
+    cursor: pointer; font-weight: 600; list-style: none; display: flex;
+    justify-content: space-between; gap: 12px; align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 10px 0 0; color: var(--muted); }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 12px 0 40px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0;
+    background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 999px;
+    font-size: 14px; transition: all .25s ease; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <label class="lang">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+        <select id="lang" aria-label="Language"></select>
+      </label>
+    </div>
+
+    <header class="hero">
+      <img class="icon" src="icon.png" alt="EcoByMe" width="112" height="112">
+      <h1 data-i18n="title"></h1>
+      <p class="tagline" data-i18n="tagline"></p>
+    </header>
+
+    <main>
+      <section class="card contact">
+        <h2 data-i18n="contactTitle"></h2>
+        <p data-i18n="contactText"></p>
+        <a class="btn" id="mailBtn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+          <span data-i18n="writeBtn"></span>
+        </a>
+        <div class="email-row">
+          <code id="emailText"></code>
+          <button class="copy" id="copyBtn" type="button" data-i18n="copyBtn"></button>
+        </div>
+        <div class="response" data-i18n="response"></div>
+      </section>
+
+      <section class="card">
+        <h3 data-i18n="tipsTitle"></h3>
+        <ul class="tips">
+          <li><span class="dot">1</span><span data-i18n="tip1"></span></li>
+          <li><span class="dot">2</span><span data-i18n="tip2"></span></li>
+          <li><span class="dot">3</span><span data-i18n="tip3"></span></li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3 data-i18n="faqTitle"></h3>
+        <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+        <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+        <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+        <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
+      </section>
+    </main>
+
+    <footer id="footer"></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // ⚠️ Indirizzo di supporto: cambia solo questa riga.
+  const SUPPORT_EMAIL = "renzo.baltolu.dev@gmail.com";
+
+  const LANGS = [
+    ["it", "Italiano"], ["en", "English"], ["fr", "Français"], ["de", "Deutsch"],
+    ["es", "Español"], ["pt", "Português"], ["zh-Hans", "简体中文"]
+  ];
+
+  const T = {
+    it: {
+      pageTitle: "EcoByMe – Supporto",
+      title: "Come possiamo aiutarti?",
+      tagline: "EcoByMe ti aiuta a tenere sotto controllo la tua CO₂ giorno per giorno, come un conto in banca.",
+      contactTitle: "Scrivici",
+      contactText: "Hai una domanda, un problema o un'idea per migliorare l'app? Mandaci un'email: leggiamo ogni messaggio.",
+      writeBtn: "Invia un'email al supporto",
+      copyBtn: "Copia",
+      copied: "Indirizzo copiato",
+      response: "Di solito rispondiamo entro 2 giorni lavorativi.",
+      tipsTitle: "Per aiutarti più in fretta",
+      tip1: "Indica il modello di iPhone e la versione di iOS.",
+      tip2: "Indica la versione di EcoByMe (la trovi in Impostazioni).",
+      tip3: "Descrivi cosa è successo e, se puoi, allega uno screenshot.",
+      faqTitle: "Domande frequenti",
+      q1: "Dove sono salvati i miei dati?",
+      a1: "I tuoi movimenti restano sul tuo iPhone. Nelle sfide gli altri partecipanti vedono solo il tuo nome e le cifre di Statistiche.",
+      q2: "Perché i passi non vengono aggiunti?",
+      a2: "Controlla di aver concesso l'accesso in Salute › Profilo › App › EcoByMe e che l'opzione sia attiva nelle Impostazioni dell'app.",
+      q3: "Non riesco a partecipare a una sfida.",
+      a3: "Le sfide usano iCloud: accedi con il tuo ID Apple e attiva iCloud nelle Impostazioni di iPhone.",
+      q4: "Quanto sono precise le stime di CO₂?",
+      a4: "Sono valori indicativi, anche quelli stimati con Apple Intelligence. Puoi modificarli in qualsiasi momento in Configura.",
+      mailSubject: "Supporto EcoByMe",
+      mailBody: "Ciao,\n\n[Scrivi qui la tua domanda o il problema]\n\n—\nModello iPhone:\nVersione iOS:\nVersione EcoByMe:\n",
+      footer: "© {y} EcoByMe · Pagina di supporto"
+    },
+    en: {
+      pageTitle: "EcoByMe – Support",
+      title: "How can we help?",
+      tagline: "EcoByMe helps you keep track of your CO₂ day by day, just like a bank account.",
+      contactTitle: "Get in touch",
+      contactText: "Have a question, a problem or an idea to make the app better? Send us an email: we read every message.",
+      writeBtn: "Email support",
+      copyBtn: "Copy",
+      copied: "Address copied",
+      response: "We usually reply within 2 business days.",
+      tipsTitle: "To help you faster",
+      tip1: "Tell us your iPhone model and iOS version.",
+      tip2: "Tell us your EcoByMe version (see Settings).",
+      tip3: "Describe what happened and, if you can, attach a screenshot.",
+      faqTitle: "Frequently asked questions",
+      q1: "Where is my data stored?",
+      a1: "Your entries stay on your iPhone. In challenges, other participants only see your name and your Statistics figures.",
+      q2: "Why aren't my steps being added?",
+      a2: "Make sure you granted access in Health › Profile › Apps › EcoByMe and that the option is turned on in the app's Settings.",
+      q3: "I can't join a challenge.",
+      a3: "Challenges use iCloud: sign in with your Apple ID and turn on iCloud in your iPhone Settings.",
+      q4: "How accurate are the CO₂ estimates?",
+      a4: "They are indicative values, including those estimated with Apple Intelligence. You can change them at any time in Configure.",
+      mailSubject: "EcoByMe Support",
+      mailBody: "Hi,\n\n[Write your question or describe the problem here]\n\n—\niPhone model:\niOS version:\nEcoByMe version:\n",
+      footer: "© {y} EcoByMe · Support page"
+    },
+    fr: {
+      pageTitle: "EcoByMe – Assistance",
+      title: "Comment pouvons-nous vous aider ?",
+      tagline: "EcoByMe vous aide à suivre votre CO₂ jour après jour, comme un compte en banque.",
+      contactTitle: "Écrivez-nous",
+      contactText: "Une question, un problème ou une idée pour améliorer l'app ? Envoyez-nous un e-mail : nous lisons chaque message.",
+      writeBtn: "Écrire à l'assistance",
+      copyBtn: "Copier",
+      copied: "Adresse copiée",
+      response: "Nous répondons généralement sous 2 jours ouvrés.",
+      tipsTitle: "Pour vous aider plus vite",
+      tip1: "Indiquez le modèle de votre iPhone et la version d'iOS.",
+      tip2: "Indiquez la version d'EcoByMe (dans Réglages).",
+      tip3: "Décrivez ce qui s'est passé et, si possible, joignez une capture d'écran.",
+      faqTitle: "Questions fréquentes",
+      q1: "Où sont enregistrées mes données ?",
+      a1: "Vos mouvements restent sur votre iPhone. Dans les défis, les autres participants voient seulement votre nom et vos chiffres de Statistiques.",
+      q2: "Pourquoi mes pas ne sont-ils pas ajoutés ?",
+      a2: "Vérifiez que vous avez autorisé l'accès dans Santé › Profil › Apps › EcoByMe et que l'option est activée dans les Réglages de l'app.",
+      q3: "Je n'arrive pas à rejoindre un défi.",
+      a3: "Les défis utilisent iCloud : connectez-vous avec votre identifiant Apple et activez iCloud dans les Réglages de l'iPhone.",
+      q4: "Les estimations de CO₂ sont-elles précises ?",
+      a4: "Ce sont des valeurs indicatives, y compris celles estimées avec Apple Intelligence. Vous pouvez les modifier à tout moment dans Configurer.",
+      mailSubject: "Assistance EcoByMe",
+      mailBody: "Bonjour,\n\n[Écrivez ici votre question ou décrivez le problème]\n\n—\nModèle d'iPhone :\nVersion d'iOS :\nVersion d'EcoByMe :\n",
+      footer: "© {y} EcoByMe · Page d'assistance"
+    },
+    de: {
+      pageTitle: "EcoByMe – Support",
+      title: "Wie können wir helfen?",
+      tagline: "EcoByMe hilft dir, dein CO₂ Tag für Tag im Blick zu behalten – wie ein Bankkonto.",
+      contactTitle: "Schreib uns",
+      contactText: "Du hast eine Frage, ein Problem oder eine Idee, wie die App besser werden kann? Schick uns eine E-Mail – wir lesen jede Nachricht.",
+      writeBtn: "E-Mail an den Support",
+      copyBtn: "Kopieren",
+      copied: "Adresse kopiert",
+      response: "Wir antworten in der Regel innerhalb von 2 Werktagen.",
+      tipsTitle: "Damit wir schneller helfen können",
+      tip1: "Nenne dein iPhone-Modell und die iOS-Version.",
+      tip2: "Nenne die EcoByMe-Version (unter Einstellungen).",
+      tip3: "Beschreibe, was passiert ist, und füge wenn möglich einen Screenshot bei.",
+      faqTitle: "Häufige Fragen",
+      q1: "Wo werden meine Daten gespeichert?",
+      a1: "Deine Buchungen bleiben auf deinem iPhone. Bei Challenges sehen die anderen Teilnehmer nur deinen Namen und deine Statistik-Werte.",
+      q2: "Warum werden meine Schritte nicht hinzugefügt?",
+      a2: "Prüfe, ob du den Zugriff unter Health › Profil › Apps › EcoByMe erlaubt hast und die Option in den Einstellungen der App aktiv ist.",
+      q3: "Ich kann keiner Challenge beitreten.",
+      a3: "Challenges nutzen iCloud: Melde dich mit deiner Apple-ID an und aktiviere iCloud in den iPhone-Einstellungen.",
+      q4: "Wie genau sind die CO₂-Schätzungen?",
+      a4: "Es sind Richtwerte, auch die mit Apple Intelligence geschätzten. Du kannst sie jederzeit unter Konfigurieren ändern.",
+      mailSubject: "EcoByMe Support",
+      mailBody: "Hallo,\n\n[Schreib hier deine Frage oder beschreibe das Problem]\n\n—\niPhone-Modell:\niOS-Version:\nEcoByMe-Version:\n",
+      footer: "© {y} EcoByMe · Support-Seite"
+    },
+    es: {
+      pageTitle: "EcoByMe – Soporte",
+      title: "¿Cómo podemos ayudarte?",
+      tagline: "EcoByMe te ayuda a controlar tu CO₂ día a día, como una cuenta bancaria.",
+      contactTitle: "Escríbenos",
+      contactText: "¿Tienes una pregunta, un problema o una idea para mejorar la app? Envíanos un correo: leemos todos los mensajes.",
+      writeBtn: "Escribir a soporte",
+      copyBtn: "Copiar",
+      copied: "Dirección copiada",
+      response: "Normalmente respondemos en un plazo de 2 días laborables.",
+      tipsTitle: "Para ayudarte más rápido",
+      tip1: "Indica el modelo de tu iPhone y la versión de iOS.",
+      tip2: "Indica la versión de EcoByMe (en Ajustes).",
+      tip3: "Describe qué ha pasado y, si puedes, adjunta una captura de pantalla.",
+      faqTitle: "Preguntas frecuentes",
+      q1: "¿Dónde se guardan mis datos?",
+      a1: "Tus movimientos se quedan en tu iPhone. En los retos, los demás participantes solo ven tu nombre y tus cifras de Estadísticas.",
+      q2: "¿Por qué no se añaden mis pasos?",
+      a2: "Comprueba que has dado acceso en Salud › Perfil › Apps › EcoByMe y que la opción está activada en los Ajustes de la app.",
+      q3: "No puedo unirme a un reto.",
+      a3: "Los retos usan iCloud: inicia sesión con tu ID de Apple y activa iCloud en los Ajustes del iPhone.",
+      q4: "¿Qué precisión tienen las estimaciones de CO₂?",
+      a4: "Son valores orientativos, también los estimados con Apple Intelligence. Puedes cambiarlos cuando quieras en Configurar.",
+      mailSubject: "Soporte EcoByMe",
+      mailBody: "Hola:\n\n[Escribe aquí tu pregunta o describe el problema]\n\n—\nModelo de iPhone:\nVersión de iOS:\nVersión de EcoByMe:\n",
+      footer: "© {y} EcoByMe · Página de soporte"
+    },
+    pt: {
+      pageTitle: "EcoByMe – Suporte",
+      title: "Como podemos ajudar?",
+      tagline: "O EcoByMe ajuda-te a controlar o teu CO₂ dia após dia, como uma conta bancária.",
+      contactTitle: "Escreve-nos",
+      contactText: "Tens uma pergunta, um problema ou uma ideia para melhorar a app? Envia-nos um e-mail: lemos todas as mensagens.",
+      writeBtn: "Enviar e-mail ao suporte",
+      copyBtn: "Copiar",
+      copied: "Endereço copiado",
+      response: "Normalmente respondemos em 2 dias úteis.",
+      tipsTitle: "Para te ajudarmos mais depressa",
+      tip1: "Indica o modelo do teu iPhone e a versão do iOS.",
+      tip2: "Indica a versão do EcoByMe (em Definições).",
+      tip3: "Descreve o que aconteceu e, se possível, junta uma captura de ecrã.",
+      faqTitle: "Perguntas frequentes",
+      q1: "Onde ficam guardados os meus dados?",
+      a1: "Os teus movimentos ficam no teu iPhone. Nos desafios, os outros participantes só veem o teu nome e os teus valores de Estatísticas.",
+      q2: "Porque é que os meus passos não são adicionados?",
+      a2: "Verifica se deste acesso em Saúde › Perfil › Apps › EcoByMe e se a opção está ativa nas Definições da app.",
+      q3: "Não consigo entrar num desafio.",
+      a3: "Os desafios usam o iCloud: inicia sessão com o teu ID Apple e ativa o iCloud nas Definições do iPhone.",
+      q4: "Qual é a precisão das estimativas de CO₂?",
+      a4: "São valores indicativos, incluindo os estimados com o Apple Intelligence. Podes alterá-los a qualquer momento em Configurar.",
+      mailSubject: "Suporte EcoByMe",
+      mailBody: "Olá,\n\n[Escreve aqui a tua pergunta ou descreve o problema]\n\n—\nModelo do iPhone:\nVersão do iOS:\nVersão do EcoByMe:\n",
+      footer: "© {y} EcoByMe · Página de suporte"
+    },
+    "zh-Hans": {
+      pageTitle: "EcoByMe – 支持",
+      title: "我们能帮你什么？",
+      tagline: "EcoByMe 帮你像管理银行账户一样，每天掌握自己的二氧化碳排放。",
+      contactTitle: "联系我们",
+      contactText: "有问题、遇到故障，或有改进 App 的想法？请给我们发邮件，每封邮件我们都会阅读。",
+      writeBtn: "发邮件给支持团队",
+      copyBtn: "复制",
+      copied: "已复制邮箱地址",
+      response: "我们通常会在 2 个工作日内回复。",
+      tipsTitle: "为了更快地帮助你",
+      tip1: "请注明你的 iPhone 机型和 iOS 版本。",
+      tip2: "请注明 EcoByMe 的版本（在“设置”中查看）。",
+      tip3: "请描述发生了什么，如果可以，请附上截图。",
+      faqTitle: "常见问题",
+      q1: "我的数据保存在哪里？",
+      a1: "你的记录保存在你的 iPhone 上。在挑战中，其他参与者只能看到你的名字和统计数据。",
+      q2: "为什么步数没有被添加？",
+      a2: "请确认已在“健康 › 个人资料 › App › EcoByMe”中授予访问权限，并已在 App 的设置中开启该选项。",
+      q3: "我无法加入挑战。",
+      a3: "挑战使用 iCloud：请使用你的 Apple ID 登录，并在 iPhone 设置中开启 iCloud。",
+      q4: "二氧化碳估算有多准确？",
+      a4: "这些都是参考值，包括由 Apple Intelligence 估算的数值。你可以随时在“配置”中修改。",
+      mailSubject: "EcoByMe 支持",
+      mailBody: "你好，\n\n[请在这里写下你的问题或描述故障]\n\n—\niPhone 机型：\niOS 版本：\nEcoByMe 版本：\n",
+      footer: "© {y} EcoByMe · 支持页面"
+    }
+  };
+
+  function detectLang() {
+    const fromUrl = new URLSearchParams(location.search).get("lang");
+    if (fromUrl && T[fromUrl]) return fromUrl;
+    try { const saved = localStorage.getItem("ecobyme-lang"); if (saved && T[saved]) return saved; } catch (e) {}
+    for (const tag of (navigator.languages || [navigator.language || "en"])) {
+      const code = tag.toLowerCase().split("-")[0];
+      if (code === "zh") return "zh-Hans";
+      if (T[code]) return code;
+    }
+    return "en";
+  }
+
+  function apply(lang) {
+    const s = T[lang];
+    document.documentElement.lang = lang;
+    document.title = s.pageTitle;
+    document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = s[el.dataset.i18n]; });
+    document.getElementById("footer").textContent = s.footer.replace("{y}", new Date().getFullYear());
+    document.getElementById("mailBtn").href =
+      "mailto:" + SUPPORT_EMAIL +
+      "?subject=" + encodeURIComponent(s.mailSubject) +
+      "&body=" + encodeURIComponent(s.mailBody);
+    document.getElementById("lang").value = lang;
+    try { localStorage.setItem("ecobyme-lang", lang); } catch (e) {}
+  }
+
+  const select = document.getElementById("lang");
+  LANGS.forEach(([code, name]) => select.add(new Option(name, code)));
+  select.addEventListener("change", e => apply(e.target.value));
+  document.getElementById("emailText").textContent = SUPPORT_EMAIL;
+
+  const toast = document.getElementById("toast");
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(SUPPORT_EMAIL); } catch (e) {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById("emailText"));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    }
+    toast.textContent = T[select.value].copied;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 1800);
+  });
+
+  apply(detectLang());
+</script>
+</body>
+</html>
